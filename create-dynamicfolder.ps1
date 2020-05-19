@@ -2,7 +2,7 @@ Import-Module ActiveDirectory -WarningAction "SilentlyContinue"
 $ErrorActionPreference = "STOP"
 
 #domaincontroller
-$dommaincontroller = "172.30.100.1"
+$domaincontroller = "172.30.100.1"
 
 #regex for building the PATH var to grouping servers in royal ts
 $regex = '^\w\w\w\w\w(\w\w\w).*'
@@ -13,7 +13,7 @@ if($null -eq $creds) {
 }
 
 #get all computeraccounts that starts with SV or CL
-$servers = Get-ADComputer -Server $dommaincontroller -Credential $creds -Filter { dnshostname -like "SV*" -or dnshostname -like "CL*" }
+$servers = Get-ADComputer -Server $domaincontroller -Credential $creds -Filter { dnshostname -like "SV*" -or dnshostname -like "CL*" }
 
 #sort by dnshostname
 $servers = $servers | Sort-Object -Property dnshostname
